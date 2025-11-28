@@ -66,9 +66,10 @@ plugins:
       flowerytts: false
     
     spotify:
-      clientId: "TON_CLIENT_ID_ICI"
-      clientSecret: "TON_CLIENT_SECRET_ICI"
+      clientId: "256a806b24c6454ab84ba17eefe42c77"
+      clientSecret: "f78a9b16e5d64a3f814451e898a4201a"
       countryCode: "FR"
       playlistLoadLimit: 6
       albumLoadLimit: 6
       resolveArtistsInSearch: true
+
