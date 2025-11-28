@@ -1,0 +1,53 @@
+server:
+  port: 2333
+  address: 0.0.0.0
+  http2:
+    enabled: false
+
+lavalink:
+  plugins:
+    # Téléchargement automatique du plugin au démarrage (Méthode recommandée par ta doc)
+    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.2.0"
+      repository: "https://maven.lavalink.dev/releases"
+  server:
+    password: "youshallnotpass"
+    sources:
+      # YouTube natif doit être activé pour lire l'audio trouvé
+      youtube: true
+      bandcamp: true
+      soundcloud: true
+      twitch: true
+      vimeo: true
+      http: true
+      local: false
+    bufferDurationMs: 400
+    frameBufferDurationMs: 5000
+    opusEncodingQuality: 10
+    resamplingQuality: LOW
+    trackStuckThresholdMs: 10000
+
+# CONFIGURATION DU PLUGIN LAVASRC
+plugins:
+  lavasrc:
+    providers:
+      # MIRRORING SPOTIFY -> YOUTUBE
+      # 1. Recherche précise via ISRC sur YouTube
+      - "ytsearch:\"%ISRC%\""
+      # 2. Recherche via Titre - Artiste sur YouTube
+      - "ytsearch:%QUERY%"
+    
+    sources:
+      spotify: true    # Activé pour lire les liens Spotify
+      youtube: true    # ACTIVÉ : C'est ça "LavaSearch" (Recherche riche Albums/Artistes YouTube)
+      applemusic: false
+      deezer: false    # Désactivé comme demandé
+      yandexmusic: false
+      flowerytts: false
+    
+    spotify:
+      clientId: "TON_CLIENT_ID_ICI"
+      clientSecret: "TON_CLIENT_SECRET_ICI"
+      countryCode: "FR"
+      playlistLoadLimit: 6
+      albumLoadLimit: 6
+      resolveArtistsInSearch: true # Utile pour LavaSearch
