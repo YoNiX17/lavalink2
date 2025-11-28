@@ -35,17 +35,18 @@ plugins:
     enabled: true
     oauth:
       enabled: true
-      # refreshToken: "" # Tu pourras le mettre ici plus tard si tu veux qu'il reste après un reboot
+      # LE TOKEN EST MAINTENANT SAUVEGARDÉ ICI
+      # Cela permet au bot de rester connecté à Google même après un redémarrage
+      refreshToken: "1//09MGyIgWGOkRtCgYIARAAGAkSNwF-L9Ir5lzOjyVbDf7hkt73NIUPpBRqK4pz0wP5E4EJUpriinXlu_akjWW_C0rAcdpbO2NeFv0"
     
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
-    # CORRECTION DES CLIENTS (TVHTML5 -> TV)
     clients:
-      - TV           # C'est ce client qui gère l'OAuth (Remplace TVHTML5)
+      - TV
       - ANDROID_VR
       - WEB
-      - MUSIC        # Ajouté pour plus de fiabilité
+      - MUSIC
 
   lavasrc:
     providers:
