@@ -42,13 +42,13 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
     
-    # STRATÉGIE ANTI-BLOCAGE
-    # On supprime TV et WEB qui déclenchent le "Login Required"
-    # On ne garde que les clients "Mobiles/Music" qui passent mieux sur les serveurs
+    # CORRECTION CRITIQUE BASÉE SUR LA DOC :
+    # Seul le client 'TV' supporte l'OAuth.
+    # MUSIC et ANDROID_VR l'ignoraient, d'où le blocage.
     clients:
-      - MUSIC
+      - TV
       - ANDROID_VR
-      - ANDROID_MUSIC
+      - MUSIC
 
   lavasrc:
     providers:
