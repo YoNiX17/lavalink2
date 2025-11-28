@@ -33,20 +33,22 @@ lavalink:
 plugins:
   youtube:
     enabled: true
-    # On désactive OAuth pour tester le mode "Furtif" avec le nouveau plugin
     oauth:
-      enabled: false
+      enabled: true
+      # Token valide récupéré de tes logs
+      refreshToken: "1//09MGyIgWGOkRtCgYIARAAGAkSNwF-L9Ir5lzOjyVbDf7hkt73NIUPpBRqK4pz0wP5E4EJUpriinXlu_akjWW_C0rAcdpbO2NeFv0"
     
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
-    # NOUVELLE STRATÉGIE DE CLIENTS
-    # MUSIC et ANDROID_VR sont souvent moins bloqués sur les IPs de datacenter
+    
+    # STRATÉGIE ANTI-BLOCAGE
+    # On supprime TV et WEB qui déclenchent le "Login Required"
+    # On ne garde que les clients "Mobiles/Music" qui passent mieux sur les serveurs
     clients:
       - MUSIC
       - ANDROID_VR
-      - TV
-      - WEB
+      - ANDROID_MUSIC
 
   lavasrc:
     providers:
