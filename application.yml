@@ -36,6 +36,11 @@ plugins:
   # On la met ici pour être sûr qu'elle soit détectée
   youtube:
     enabled: true
+    # ACTIVATION OAUTH2 (Connexion Google)
+    oauth:
+      enabled: true
+      # refreshToken: "" # Une fois que tu auras autorisé via les logs, tu pourras coller le token ici pour qu'il soit permanent sans fichier.
+    
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
@@ -61,8 +66,8 @@ plugins:
       flowerytts: false
     
     spotify:
-      clientId: "256a806b24c6454ab84ba17eefe42c77"
-      clientSecret: "f78a9b16e5d64a3f814451e898a4201a"
+      clientId: "TON_CLIENT_ID_ICI"
+      clientSecret: "TON_CLIENT_SECRET_ICI"
       countryCode: "FR"
       playlistLoadLimit: 6
       albumLoadLimit: 6
