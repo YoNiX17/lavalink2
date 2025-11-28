@@ -10,15 +10,14 @@ lavalink:
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.2.0"
       repository: "https://maven.lavalink.dev/releases"
     
-    # 2. Plugin YouTube Source (Version 1.16.0 pour LavaSearch)
+    # 2. Plugin YouTube Source
     - dependency: "dev.lavalink.youtube:youtube-plugin:1.16.0"
       repository: "https://maven.lavalink.dev/releases"
 
   server:
     password: "youshallnotpass"
     sources:
-      # On désactive la source native pour utiliser le plugin
-      youtube: false
+      youtube: false # Désactivé pour utiliser le plugin
       bandcamp: true
       soundcloud: true
       twitch: true
@@ -32,26 +31,22 @@ lavalink:
     trackStuckThresholdMs: 10000
 
 plugins:
-  # CONFIGURATION CRITIQUE POUR YOUTUBE
-  # On la met ici pour être sûr qu'elle soit détectée
   youtube:
     enabled: true
-    # ACTIVATION OAUTH2 (Connexion Google)
     oauth:
       enabled: true
-      # refreshToken: "" # Une fois que tu auras autorisé via les logs, tu pourras coller le token ici pour qu'il soit permanent sans fichier.
+      # refreshToken: "" # Tu pourras le mettre ici plus tard si tu veux qu'il reste après un reboot
     
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
-    # L'ordre est important : on utilise des clients "mobiles/TV" pour éviter le blocage "Login required"
+    # CORRECTION DES CLIENTS (TVHTML5 -> TV)
     clients:
-      - TVHTML5
+      - TV           # C'est ce client qui gère l'OAuth (Remplace TVHTML5)
       - ANDROID_VR
       - WEB
-      - WEB_EMBEDDED
+      - MUSIC        # Ajouté pour plus de fiabilité
 
-  # CONFIGURATION LAVASRC
   lavasrc:
     providers:
       - "ytsearch:\"%ISRC%\""
@@ -72,4 +67,3 @@ plugins:
       playlistLoadLimit: 6
       albumLoadLimit: 6
       resolveArtistsInSearch: true
-
