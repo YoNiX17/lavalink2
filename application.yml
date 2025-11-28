@@ -6,19 +6,20 @@ server:
 
 lavalink:
   plugins:
-    # 1. Plugin LavaSrc (Spotify, Deezer, etc.)
+    # 1. Plugin LavaSrc (Spotify, Deezer, etc.) - On garde la 4.2.0 qui marche bien
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.2.0"
       repository: "https://maven.lavalink.dev/releases"
     
-    # 2. Plugin YouTube Source (OBLIGATOIRE pour LavaSearch YouTube)
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.11.1"
+    # 2. Plugin YouTube Source - MISE À JOUR CRITIQUE (1.11.1 -> 1.16.0)
+    # C'est ça qui répare le son !
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.16.0"
       repository: "https://maven.lavalink.dev/releases"
 
   server:
     password: "youshallnotpass"
     sources:
-      # Avec le plugin YouTube installé, on peut laisser ceci à true, le plugin prendra le relais
-      youtube: true
+      # On DÉSACTIVE la source YouTube native (obsolète) pour forcer l'usage du plugin ci-dessous
+      youtube: false
       bandcamp: true
       soundcloud: true
       twitch: true
@@ -30,19 +31,18 @@ lavalink:
     opusEncodingQuality: 10
     resamplingQuality: LOW
     trackStuckThresholdMs: 10000
-    
-    # Configuration spécifique pour le nouveau plugin YouTube
-    youtube:
-      enabled: true
-      allowSearch: true # Autorise la recherche
-      allowDirectVideoIds: true
-      allowDirectPlaylistIds: true
-      # Les clients à utiliser pour éviter les blocages (Rotation)
-      clients:
-        - MUSIC
-        - ANDROID_VR
-        - WEB
-        - WEB_EMBEDDED
+
+# CONFIGURATION DU PLUGIN YOUTUBE (Nouvelle version)
+youtube:
+  enabled: true
+  allowSearch: true
+  allowDirectVideoIds: true
+  allowDirectPlaylistIds: true
+  clients:
+    - MUSIC
+    - ANDROID_VR
+    - WEB
+    - WEB_EMBEDDED
 
 # CONFIGURATION DU PLUGIN LAVASRC
 plugins:
@@ -54,7 +54,7 @@ plugins:
     
     sources:
       spotify: true    
-      youtube: true    # LavaSearch (Fonctionnera maintenant car le plugin youtube-plugin est là)
+      youtube: true    # LavaSearch
       applemusic: false
       deezer: false
       yandexmusic: false
