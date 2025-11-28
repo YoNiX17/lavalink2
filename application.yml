@@ -6,19 +6,18 @@ server:
 
 lavalink:
   plugins:
-    # 1. Plugin LavaSrc (Spotify, Deezer, etc.) - On garde la 4.2.0 qui marche bien
+    # 1. Plugin LavaSrc (Spotify, Deezer, etc.)
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.2.0"
       repository: "https://maven.lavalink.dev/releases"
     
-    # 2. Plugin YouTube Source - MISE À JOUR CRITIQUE (1.11.1 -> 1.16.0)
-    # C'est ça qui répare le son !
+    # 2. Plugin YouTube Source (Version 1.16.0 pour LavaSearch)
     - dependency: "dev.lavalink.youtube:youtube-plugin:1.16.0"
       repository: "https://maven.lavalink.dev/releases"
 
   server:
     password: "youshallnotpass"
     sources:
-      # On DÉSACTIVE la source YouTube native (obsolète) pour forcer l'usage du plugin ci-dessous
+      # On désactive la source native pour utiliser le plugin
       youtube: false
       bandcamp: true
       soundcloud: true
@@ -32,29 +31,30 @@ lavalink:
     resamplingQuality: LOW
     trackStuckThresholdMs: 10000
 
-# CONFIGURATION DU PLUGIN YOUTUBE (Nouvelle version)
-youtube:
-  enabled: true
-  allowSearch: true
-  allowDirectVideoIds: true
-  allowDirectPlaylistIds: true
-  clients:
-    - MUSIC
-    - ANDROID_VR
-    - WEB
-    - WEB_EMBEDDED
-
-# CONFIGURATION DU PLUGIN LAVASRC
 plugins:
+  # CONFIGURATION CRITIQUE POUR YOUTUBE
+  # On la met ici pour être sûr qu'elle soit détectée
+  youtube:
+    enabled: true
+    allowSearch: true
+    allowDirectVideoIds: true
+    allowDirectPlaylistIds: true
+    # L'ordre est important : on utilise des clients "mobiles/TV" pour éviter le blocage "Login required"
+    clients:
+      - TVHTML5
+      - ANDROID_VR
+      - WEB
+      - WEB_EMBEDDED
+
+  # CONFIGURATION LAVASRC
   lavasrc:
     providers:
-      # MIRRORING SPOTIFY -> YOUTUBE
       - "ytsearch:\"%ISRC%\""
       - "ytsearch:%QUERY%"
     
     sources:
       spotify: true    
-      youtube: true    # LavaSearch
+      youtube: true
       applemusic: false
       deezer: false
       yandexmusic: false
